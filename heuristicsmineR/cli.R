@@ -20,7 +20,7 @@ Sys.setenv(TZ="UTC") # fix warning in docker (https://github.com/rocker-org/rock
 
 if (arguments$`input-format` == "csv") {
   log <- readr::read_csv(arguments$`input-file`)  
-  bupaR::simple_eventlog(log, 
+  log <- bupaR::simple_eventlog(log, 
                          case_id = "case_id",
                          activity_id = "activity_id",
                          timestamp = "timestamp")
