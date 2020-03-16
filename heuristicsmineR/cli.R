@@ -1,7 +1,7 @@
 'Heuristics Miner in R.
 
 Usage:
-  cli.R <input-file> <output-file> [--input-format=<input-format> --output-format=<output-format> --threshold=<threshold>]
+  cli.R <input-file> <output-file> [--input-format=<input-format> --output-type=<output-type> --output-format=<output-format> --threshold=<threshold>]
   cli.R (-h | --help)
   cli.R --version
 
@@ -21,7 +21,12 @@ arguments <- docopt(doc, version = paste0('Heuristics Miner ', packageVersion("h
 Sys.setenv(TZ="UTC") # fix warning in docker (https://github.com/rocker-org/rocker-versioned/issues/89)
 
 if (arguments$`input-format` == "csv") {
-  log <- readr::read_csv(arguments$`input-file`)
+  log <- readr::read_csv(arguments$`input-file`, 
+                          col_types = readr::cols(
+                          case_id = readr::col_character(),
+                          activity_id = readr::col_character(),
+                          timestamp = readr::col_datetime(format = "")
+                        ))
   log <- bupaR::simple_eventlog(log,
                          case_id = "case_id",
                          activity_id = "activity_id",

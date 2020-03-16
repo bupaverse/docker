@@ -18,14 +18,37 @@ docker run -v %cd%:/work bupaverse/heuristicsminer-cli:latest cli.R --help
 docker run -v $(pwd):/work bupaverse/heuristicsminer-cli:latest cli.R --help
 ```
 
-## Discover Causal net from CSV
+## Discovery
 
+### Discover Causal net from CSV
+
+As SVG:
 ```
 # Windows
 docker run -v %cd%:/work bupaverse/heuristicsminer-cli:latest cli.R test.csv test.svg --input-format csv
 
 # Linux
 docker run -v $(pwd):/work bupaverse/heuristicsminer-cli:latest cli.R test.csv test.svg --input-format csv
+```
+
+As DOT:
+```
+# Windows
+docker run -v %cd%:/work bupaverse/heuristicsminer-cli:latest cli.R test.csv test.dot --input-format csv --output-format dot
+
+# Linux
+docker run -v $(pwd):/work bupaverse/heuristicsminer-cli:latest cli.R test.csv test.dot --input-format csv --output-format dot
+```
+
+### Discover Petri net from CSV
+
+As SVG:
+```
+# Windows
+docker run -v %cd%:/work bupaverse/heuristicsminer-cli:latest cli.R test.csv test.svg --input-format csv --output-type pnet
+
+# Linux
+docker run -v $(pwd):/work bupaverse/heuristicsminer-cli:latest cli.R test.csv test.svg --input-format csv  --output-type pnet
 ```
 
 ## Known issues¨
